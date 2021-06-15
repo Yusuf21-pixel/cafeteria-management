@@ -1,0 +1,29 @@
+<section class = "SignIn-container">
+  <div class = "SignIn-container-content">
+      <p class = "NewUsers-title">Sign In</p>
+      <%= form_with(url: sessions_path) do |form| %>
+          <div class = "Form-section">
+            <%= form.email_field :email,
+                                class:"Form-input",
+                                pattern: ".+@gmail\.com",
+                                required: true,
+                                placeholder: "Email address",
+                                autofocus: true,
+                                title: "Email should end with gmail.com e.g. john123@gmail.com" %>
+          </div>
+          <div class = "Form-section">
+            <%= form.password_field :password,
+                                    class:"Form-input",
+                                    required: true,
+                                    placeholder: "Password",
+                                    pattern: ".{7,}",
+                                    title: "Please lengthen your password to 7 or more characters" %>
+          </div>
+          <div class = "Form-section">
+            <%= form.submit "Sign-In", class:"Form-submit"  %>
+          </div>
+      <% end %>
+      <hr class="Bottom-line">
+      <%= link_to "Create New Account", new_user_path, class: "Create-btn" %>
+  </div>
+</section>
