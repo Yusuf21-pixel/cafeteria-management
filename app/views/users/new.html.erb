@@ -1,29 +1,30 @@
-<p class = "NewUsers-title">Welcome new User!</p>
-
-<section class = "UsersNew">
-  <%= form_with(url: users_path) do |form| %>
-      <div class = "Form-section">
-        <p class = "FormInput-label">Name: </p>
-        <%= form.text_field :name, class:"Form-input" %>
+<section class = "SignIn-container">
+  <div class = "SignIn-container-content">
+      <%= form_with(url: users_path) do |form| %>
+          <div class = "Form-section">
+            <%= form.text_field :name, class:"Form-input", placeholder:"Name" %>
+          </div>
+          <div class = "Form-section">
+            <%= form.text_field :phone_no, class:"Form-input", placeholder:"Phone number" %>
+          </div>
+          <div class = "Form-section">
+            <%= form.email_field :email, class:"Form-input", placeholder:"Email" %>
+          </div>
+          <div class = "Form-section">
+            <%= form.password_field :password, class:"Form-input", placeholder:"Password" %>
+          </div>
+          <div class = "Form-section">
+            <%= text_area_tag 'address', nil, rows: 5, class:"Form-input", placeholder:"Address"  %>
+          </div>
+          <div class = "Form-section">
+            <%= form.submit "Sign-up!", class:"Form-submit"  %>
+          </div>
+          <%= hidden_field_tag 'role', 'customer' %>
+      <% end %>
+      <hr class="Bottom-line">
+      <div class="ExistingUser">
+        <p class="ExistingUser-text">Already existing user?  </p>
+        <%= link_to "Sign In", root_path, class: "ExistingUser-link", title: "Log In" %>
       </div>
-      <div class = "Form-section">
-        <p class = "FormInput-label">Phone No: </p>
-        <%= form.text_field :phone_no, class:"Form-input"  %>
-      </div>
-      <div class = "Form-section">
-        <p class = "FormInput-label">Email: </p>
-        <%= form.email_field :email, class:"Form-input"  %>
-      </div>
-      <div class = "Form-section">
-        <p class = "FormInput-label">Password: </p>
-        <%= form.password_field :password, class:"Form-input"  %>
-      </div>
-      <div class = "Form-section">
-        <p class = "FormInput-label">Address: </p>
-        <%= form.text_field :address, class:"Form-input"  %>
-      </div>
-      <div class = "Form-section">
-        <%= form.submit "Sign-up!", class:"Form-submit"  %>
-      </div>
-  <% end %>
+  </div>
 </section>
