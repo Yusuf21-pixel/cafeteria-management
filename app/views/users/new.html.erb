@@ -2,22 +2,48 @@
   <div class = "SignIn-container-content">
       <%= form_with(url: users_path) do |form| %>
           <div class = "Form-section">
-            <%= form.text_field :name, class:"Form-input", placeholder:"Name" %>
+              <%= form.text_field :name,
+                                  class:"Form-input",
+                                  placeholder:"Name",
+                                  autofocus: true,
+                                  pattern: ".{3,}",
+                                  title: "Name should have atleast 3 characters",
+                                  required: true %>
           </div>
           <div class = "Form-section">
-            <%= form.text_field :phone_no, class:"Form-input", placeholder:"Phone number" %>
+              <%= form.text_field :phone_no,
+                                  class:"Form-input",
+                                  placeholder:"Phone number",
+                                  pattern: "[0-9]{10}",
+                                  title: "Phone number should be 10 digit",
+                                  required: true %>
           </div>
           <div class = "Form-section">
-            <%= form.email_field :email, class:"Form-input", placeholder:"Email" %>
+              <%= form.email_field :email,
+                                   class:"Form-input",
+                                   placeholder: "Email address",
+                                   pattern: ".+@gmail\.com",
+                                   title: "Email should end with gmail.com e.g. john123@gmail.com",
+                                   required: true %>
           </div>
           <div class = "Form-section">
-            <%= form.password_field :password, class:"Form-input", placeholder:"Password" %>
+              <%= form.password_field :password,
+                                      class:"Form-input",
+                                      placeholder:"Password",
+                                      pattern: ".{7,}",
+                                      title: "Please lengthen your password to 7 or more characters",
+                                      required: true %>
           </div>
           <div class = "Form-section">
-            <%= text_area_tag 'address', nil, rows: 5, class:"Form-input", placeholder:"Address"  %>
+              <%= text_area_tag 'address',
+                                 nil,
+                                 rows: 5,
+                                 class:"Form-input",
+                                 placeholder:"Address",
+                                 required: true %>
           </div>
           <div class = "Form-section">
-            <%= form.submit "Sign-up!", class:"Form-submit"  %>
+              <%= form.submit "Sign-up!", class:"Form-submit"  %>
           </div>
           <%= hidden_field_tag 'role', 'customer' %>
       <% end %>
