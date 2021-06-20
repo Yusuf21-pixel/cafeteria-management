@@ -101,3 +101,8 @@ body {
 .ExistingUser-link {
   font-size: larger;
 }
+
+.navbar-expand-lg {
+  background-color: #364760;
+  color: #ffffff;
+}

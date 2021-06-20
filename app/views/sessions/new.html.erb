@@ -5,11 +5,10 @@
           <div class = "Form-section">
               <%= form.email_field :email,
                                    class:"Form-input",
-                                   pattern: ".+@gmail\.com",
                                    required: true,
                                    placeholder: "Email address",
-                                   autofocus: true,
-                                   title: "Email should end with gmail.com e.g. john123@gmail.com" %>
+                                   autofocus: true
+              %>
           </div>
           <div class = "Form-section">
               <%= form.password_field :password,
