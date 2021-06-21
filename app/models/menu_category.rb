@@ -1,3 +1,3 @@
-class User < ActiveRecord::Base
+class MenuCategory < ActiveRecord::Base
   has_many :menu_items
 end
