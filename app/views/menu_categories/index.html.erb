@@ -1,33 +1,42 @@
-     <%= link_to "Add Category",
-                  menu_categories_path,
-                  { :remote => true,
-                  "data-toggle" => "modal",
-                  "data-target" => "#exampleModal",
-                  class: "Add-category" } %>
-<ul class="MenuCategory-body">
-   <% @categories.each do |category| %>
-      <li class="MenuCategory-item">
-          <div class="MenuCategory-left">
-            <p class= <%= category.status == "Active" ? "MenuCategory-status-active" : "MenuCategory-status-inactive" %>> <%= category.status %> </p>
-            <p class="MenuCategory-name"> <%= category.name %> </p>
-          </div>
-          <div class="MenuCategory-right">
-            <%= form_with(url:"/add_item_view/#{category.id}", method: "get") do %>
-               <%= submit_tag "Add item", class: "MenuCategory-addItem" %>
-            <% end %>
-            <%= form_with(url: "/update_menucategory_view/#{category.id}", method: "get") do %>
-              <%= image_submit_tag("pencil.png", class: "MenuCategory-updateIcon", alt: "Pencil Icon") %>
-            <% end %>
-            <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
-              <%= image_submit_tag("trash-can.png", class: "MenuCategory-deleteIcon", alt: "Trash Can") %>
-            <% end %>
-          </div>
-      </li>
-   <% end %>
-</ul>
+<%= link_to "Add Category",
+            menu_categories_path,
+            { :remote => true,
+            "data-toggle" => "modal",
+            "data-target" => "#exampleModal",
+            class: "Add-category" } %>
+<% if @categories.empty? %>
+    <h1 class="Message-text Category-path">No categories found</h1>
+<% else %>
+    <ul class="MenuCategory-body">
+      <% @categories.each do |category| %>
+          <li class="MenuCategory-item">
+              <div class="MenuCategory-left">
+                <p class= <%= category.status == "Active" ? "MenuCategory-status-active" : "MenuCategory-status-inactive" %>> <%= category.status %> </p>
+                <p class="MenuCategory-name"> <%= category.name %> </p>
+              </div>
+              <div class="MenuCategory-right">
+                <%= form_with(url:"/add_item_view/#{category.id}", method: "get") do %>
+                  <%= submit_tag "Add item", class: "MenuCategory-addItem" %>
+                <% end %>
+                <%= form_with(url: "/update_menucategory_view/#{category.id}", method: "get") do %>
+                  <%= image_submit_tag("pencil.png",
+                                        class: "MenuCategory-updateIcon",
+                                        alt: "Pencil Icon",
+                                        title: "Edit #{category.name}" ) %>
+                <% end %>
+                <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
+                  <%= image_submit_tag("trash-can.png",
+                                        class: "MenuCategory-deleteIcon",
+                                        alt: "Trash Can",
+                                        title: "Delete #{category.name}") %>
+                <% end %>
+              </div>
+          </li>
+      <% end %>
+    </ul>
 
-<%= will_paginate @categories %>
-
+    <%= will_paginate @categories %>
+<% end %>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

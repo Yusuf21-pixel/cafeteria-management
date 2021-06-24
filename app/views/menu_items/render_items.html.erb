@@ -1,0 +1,47 @@
+<% if @menu_category.empty? %>
+   <div class="Display-message">
+      <h1 class="Message-text">No categories found</h1>
+      <%= link_to "Add Category",
+            menu_categories_path,
+            { :remote => true,
+            "data-toggle" => "modal",
+            "data-target" => "#exampleModal",
+            class: "Item-new-category" } %>
+   </div>
+<% else %>
+<div class="MenuCategory-navbar">
+    <ul>
+      <li>
+        <% @menu_category.each do |category| %>
+            <%= form_with(url: "/menuitem_view/#{category.id}", method: "get" ) do %>
+                <%= submit_tag category.name, class: "Item-category-name" %>
+            <% end %>
+        <% end %>
+      </li>
+    </ul>
+<div>
+<% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with(url: "/menu_categories", method: "post")%>
+      <div class="modal-body">
+        <%= text_field_tag "category_name",
+                            nil,
+                            class: "Add-category-text",
+                            placeholder: "Category name",
+                            autofocus: true,
+                            required: true %>
+        <%= submit_tag "Add", class: "Add-btn" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,9 +4,8 @@ class MenuCategoriesController < ApplicationController
   end
 
   def create
-    name = params[:category_name]
     new_category = MenuCategory.new(
-      name: name,
+      name: params[:category_name].capitalize(),
       status: "Active",
     )
     unless new_category.save
@@ -18,7 +17,7 @@ class MenuCategoriesController < ApplicationController
   def update
     category = MenuCategory.find(params[:id])
     category.status = params[:status]
-    category.name = params[:category_name]
+    category.name = params[:category_name].capitalize()
     category.save!
     redirect_to menu_categories_path
   end
