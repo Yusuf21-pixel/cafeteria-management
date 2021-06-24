@@ -1,0 +1,38 @@
+.Message-text {
+  font-size: 1.5rem;
+}
+
+.Category-path {
+  margin: 0 auto;
+  margin-top: 20%;
+  text-align: center;
+  padding: 30px 20px;
+  max-width: fit-content;
+  background-color: #ffffff;
+}
+
+.Item-new-category {
+  display: inline-block;
+  font-size: 1.2rem;
+  background-color: #12344d;
+  padding: 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  margin-top: 20px;
+}
+
+.Item-new-category:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.Display-message {
+  background-color: #ffffff;
+  padding: 20px 10px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20%;
+  max-width: 500px;
+}
