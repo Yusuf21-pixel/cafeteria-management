@@ -7,7 +7,7 @@ class MenuCategoriesController < ApplicationController
     name = params[:category_name]
     new_category = MenuCategory.new(
       name: name,
-      status: "active",
+      status: "Active",
     )
     unless new_category.save
       flash[:error] = new_category.errors.full_messages.join(", ")

@@ -50,7 +50,7 @@ body {
 .Form-submit {
   font-size: 20px;
   padding: 10px;
-  background-color: #364760;
+  background-color: #12344d;
   border-radius: 4px;
   color: white;
   border: 0;
@@ -59,7 +59,7 @@ body {
 }
 
 .Form-submit:hover {
-  background-color: #364770;
+  background-color: #0e2a3e;
 }
 
 .Bottom-line {
@@ -95,7 +95,7 @@ body {
 
 .ExistingUser-text {
   font-size: larger;
-  color: #364760;
+  color: #12344d;
 }
 
 .ExistingUser-link {

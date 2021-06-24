@@ -60,7 +60,7 @@
 }
 
 .MenuCategory-addItem {
-  background-color: #364760;
+  background-color: #12344d;
   color: white;
   padding: 10px;
   font-size: 1rem;
@@ -79,7 +79,7 @@
 }
 
 .MenuCategory-addItem:hover {
-  background-color: #364770;
+  background-color: #0e2a3e;
 }
 
 .MenuCategory-status-inactive {
@@ -102,7 +102,7 @@
 }
 
 .Add-btn {
-  background-color: #364760;
+  background-color: #12344d;
   padding: 10px 30px;
   text-align: center;
   color: white;
@@ -183,7 +183,7 @@
   display: inline-block;
   margin-top: 60px;
   font-size: 1.2rem;
-  background-color: #364760;
+  background-color: #12344d;
   padding: 10px;
   color: white;
   border-radius: 4px;
@@ -194,7 +194,7 @@
 .Previous:hover {
   text-decoration: none;
   color: white;
-  background-color: #364770;
+  background-color: #0e2a3e;
 }
 
 .AddItem-text,
