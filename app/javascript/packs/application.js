@@ -4,6 +4,13 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
+
+//= require jquery
+//= require popper
+//= require turbolinks
+//= require bootstrap
+//= require_tree.
+
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
@@ -11,3 +18,4 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+import "bootstrap"

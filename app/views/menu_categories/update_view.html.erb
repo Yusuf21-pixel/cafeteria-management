@@ -1,0 +1,23 @@
+<%= link_to "<< Previous", menu_categories_path ,class: "Previous" %>
+<div class="CategoryUpdate-container">
+    <%= form_with(url: "/menu_categories/#{@id}", method: "patch") do %>
+        <%= text_field_tag "category_name",
+                           @category.name,
+                           class: "Add-category-text",
+                           placeholder: "Category name",
+                           autofocus: true,
+                           required: true %>
+        <div class="MenuCategory-status-container">
+            <h3 class="MenuCategory-status-title">Status: </h3>
+            <div class="Status-container">
+                <%= radio_button_tag "status", "Active", @category.status == "Active" ? true : nil %>
+                <p class="Status-label"> Active </p>
+            </div>
+            <div class="Status-container">
+                <%= radio_button_tag "status", "In-active", @category.status == "Active" ? nil : true %>
+                <p class="Status-label"> In-active </p>
+            </div>
+        </div>
+        <%= submit_tag "Update", class: "Form-submit Update-btn" %>
+    <% end %>
+</div>

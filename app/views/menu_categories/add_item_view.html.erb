@@ -1,0 +1,40 @@
+<%= link_to "<< Previous", menu_categories_path ,class: "Previous" %>
+<div class="AddItem">
+    <%= form_with(url: "/menu_items", method: "post") do %>
+          <%= text_field_tag 'name',
+                              nil,
+                              class: "AddItem-text",
+                              required: true,
+                              autofocus: true,
+                              placeholder: "Item name for #{@category_name}" %>
+
+          <%= number_field_tag "price",
+                                nil,
+                                class: "AddItem-price",
+                                min: 1,
+                                step: ".01",
+                                required: true,
+                                placeholder: "Price"  %>
+
+          <%= text_area_tag 'description',
+                            nil,
+                            class: "AddItem-description",
+                            rows: 3,
+                            placeholder: "Description" %>
+
+          <div class="MenuCategory-status-container">
+              <h3 class="MenuCategory-status-title">Status: </h3>
+              <div class="Status-container">
+                  <%= radio_button_tag "status", "Active", true %>
+                  <p class="Status-label"> Active </p>
+              </div>
+              <div class="Status-container">
+                  <%= radio_button_tag "status", "In-active" %>
+                  <p class="Status-label"> In-active </p>
+              </div>
+          </div>
+
+          <%= hidden_field_tag 'category_id', @id %>
+          <%= submit_tag "Create", class:"Form-submit Create-item-btn" %>
+    <% end %>
+</div>

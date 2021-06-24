@@ -1,3 +1,6 @@
 .navbar {
   background-color: #364760;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }

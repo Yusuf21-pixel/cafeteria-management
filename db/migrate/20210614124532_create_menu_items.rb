@@ -5,6 +5,7 @@ class CreateMenuItems < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :description
       t.float :price
+      t.string :status
       t.timestamps
     end
   end

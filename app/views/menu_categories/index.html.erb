@@ -1,6 +1,53 @@
-<%= link_to "Add category", "#" ,class: "Add-category" %>
-<% @categories.each do |category| %>
-   <div class="MenuCategory-container">
+     <%= link_to "Add Category",
+                  menu_categories_path,
+                  { :remote => true,
+                  "data-toggle" => "modal",
+                  "data-target" => "#exampleModal",
+                  class: "Add-category" } %>
+<ul class="MenuCategory-body">
+   <% @categories.each do |category| %>
+      <li class="MenuCategory-item">
+          <div class="MenuCategory-left">
+            <p class= <%= category.status == "Active" ? "MenuCategory-status-active" : "MenuCategory-status-inactive" %>> <%= category.status %> </p>
+            <p class="MenuCategory-name"> <%= category.name %> </p>
+          </div>
+          <div class="MenuCategory-right">
+            <%= form_with(url:"/add_item_view/#{category.id}", method: "get") do %>
+               <%= submit_tag "Add item", class: "MenuCategory-addItem" %>
+            <% end %>
+            <%= form_with(url: "/update_menucategory_view/#{category.id}", method: "get") do %>
+              <%= image_submit_tag("pencil.png", class: "MenuCategory-updateIcon", alt: "Pencil Icon") %>
+            <% end %>
+            <%= form_with(url: "/menu_categories/#{category.id}", method: "delete") do %>
+              <%= image_submit_tag("trash-can.png", class: "MenuCategory-deleteIcon", alt: "Trash Can") %>
+            <% end %>
+          </div>
+      </li>
+   <% end %>
+</ul>
 
-   </div>
-<% end %>
+<%= will_paginate @categories %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with(url: "/menu_categories", method: "post")%>
+      <div class="modal-body">
+        <%= text_field_tag "category_name",
+                            nil,
+                            class: "Add-category-text",
+                            placeholder: "Category name",
+                            autofocus: true,
+                            required: true %>
+        <%= submit_tag "Add", class: "Add-btn" %>
+      </div>
+    </div>
+  </div>
+</div>
