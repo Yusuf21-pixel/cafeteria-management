@@ -9,16 +9,33 @@
             class: "Item-new-category" } %>
    </div>
 <% else %>
-<div class="MenuCategory-navbar">
-    <ul>
-      <li>
+<div class="Main-container">
+    <ul class="MenuCategory-navbar">
+        <h2 class="Item-category-title"> Menu categories </h2>
         <% @menu_category.each do |category| %>
-            <%= form_with(url: "/menuitem_view/#{category.id}", method: "get" ) do %>
-                <%= submit_tag category.name, class: "Item-category-name" %>
-            <% end %>
+            <li class="Item-category-item">
+              <%= link_to category.name, "/menuitem_view/#{category.id}", class: "Item-category-name"%>
+            </li>
         <% end %>
-      </li>
     </ul>
+    <% if @menu_items.empty? %>
+        <h1 class="Message-text Item-path">No Items found</h1>
+    <% else %>
+        <ul class="Item-menuCategory-body">
+            <% @menu_items.each do |item| %>
+                <li class="MenuCategory-item MenuItem-item">
+                  <div class="MenuCategory-left">
+                      <p class= <%= item.status == "Active" ? "MenuCategory-status-active" : "MenuCategory-status-inactive" %>> <%= item.status %> </p>
+                      <p class="MenuCategory-name"> <%= item.name %> </p>
+                  </div>
+                  <div class="MenuCategory-right">
+                        <%= link_to "Edit", update_item_view_path(id: item.id) , class: "EditItem-btn" , method: "get" %>
+                        <%= link_to "Delete", menu_items_path(id: item.id), class: "DeleteItem-btn"  ,method: "delete" %>
+                  </div>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
 <div>
 <% end %>
 
