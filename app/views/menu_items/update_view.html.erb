@@ -1,0 +1,38 @@
+<%= link_to "<< Previous", menu_items_view_path(id: @item.menu_category_id) ,class: "Previous" %>
+<div class="CategoryUpdate-container">
+    <%= form_with(url: "/menu_items/#{@id}", method: "patch") do %>
+         <%= text_field_tag "item_name",
+                             @item.name,
+                             class: "Add-category-text",
+                             placeholder: "Item name",
+                             autofocus: true,
+                             required: true %>
+
+          <%= number_field_tag "price",
+                                @item.price,
+                                class: "AddItem-price",
+                                min: 1,
+                                step: ".01",
+                                required: true,
+                                placeholder: "Price"  %>
+
+          <%= text_area_tag 'description',
+                             @item.description,
+                             class: "AddItem-description",
+                             rows: 3,
+                             placeholder: "Description" %>
+
+          <div class="MenuCategory-status-container">
+             <h3 class="MenuCategory-status-title">Status: </h3>
+             <div class="Status-container">
+                 <%= radio_button_tag "status", "Active", @item.status == "Active" ? true : nil %>
+                 <p class="Status-label"> Active </p>
+             </div>
+             <div class="Status-container">
+                 <%= radio_button_tag "status", "In-active", @item.status == "Active" ? nil : true %>
+                 <p class="Status-label"> In-active </p>
+             </div>
+         </div>
+         <%= submit_tag "Update", class: "Form-submit Update-btn" %>
+    <% end %>
+</div>
