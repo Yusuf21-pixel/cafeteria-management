@@ -33,14 +33,6 @@
                                       required: true %>
           </div>
           <div class = "Form-section">
-              <%= text_area_tag 'address',
-                                 nil,
-                                 rows: 5,
-                                 class:"Form-input",
-                                 placeholder:"Address",
-                                 required: true %>
-          </div>
-          <div class = "Form-section">
               <%= form.submit "Sign-up!", class:"Form-submit"  %>
           </div>
           <%= hidden_field_tag 'role', 'customer' %>
