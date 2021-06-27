@@ -3,4 +3,12 @@
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 2;
+}
+.nav-link {
+  color: white;
+}
+
+.NoItemsFound {
+  margin: 0px auto;
 }

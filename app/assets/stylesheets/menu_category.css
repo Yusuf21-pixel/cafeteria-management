@@ -13,6 +13,7 @@
   top: 5px;
   left: 45%;
   position: fixed;
+  z-index: 2;
 }
 
 .Add-category:hover {

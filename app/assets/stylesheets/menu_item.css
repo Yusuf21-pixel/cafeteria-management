@@ -1,14 +1,14 @@
 .Message-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 .Category-path {
   margin: 0 auto;
-  margin-top: 20%;
+  margin-top: 11%;
   text-align: center;
   padding: 30px 20px;
   max-width: fit-content;
-  background-color: #ffffff;
 }
 
 .Item-new-category {
@@ -29,33 +29,34 @@
 }
 
 .Display-message {
-  background-color: #ffffff;
   padding: 20px 10px;
   text-align: center;
   margin: 0 auto;
-  margin-top: 20%;
+  margin-top: 9%;
   max-width: 500px;
 }
 
 .MenuCategory-navbar {
   margin-top: 60px;
-  max-width: 350px;
+  width: 300px;
   background-color: honeydew;
   padding: 10px;
   position: fixed;
   height: 100%;
   overflow: auto;
   line-height: 1.1;
+  z-index: 1;
+  text-align: right;
 }
 
 .Item-category-name {
   font-size: 17px;
-  color: #12344d;
+  color: #888888;
 }
 
 .Item-category-name:hover {
   text-decoration: none;
-  color: #009efb;
+  color: #12344d;
 }
 
 .Item-category-title {
@@ -95,21 +96,25 @@
   padding: 20px;
   margin: 20px auto;
   margin-top: 62px;
-  margin-left: 360px;
-  width: 80%;
-  max-width: 70%;
+  margin-left: 320px;
+  width: 73%;
   height: 87%;
   min-height: 30%;
+  margin-right: 50px;
   position: fixed;
+  z-index: -1;
 }
 
 .Item-path {
-  margin-top: 20%;
+  margin-top: 11%;
   margin-left: 50%;
   text-align: center;
   padding: 30px 20px;
   max-width: fit-content;
-  background-color: #ffffff;
+}
+
+.MenuItem-update {
+  margin-top: 5%;
 }
 
 @media screen and (max-width: 992px) {
