@@ -1,5 +1,6 @@
 <% if @menu_category.empty? %>
    <div class="Display-message">
+      <%= image_tag "empty-page.png", alt: "No Items Found" %>
       <h1 class="Message-text">No categories found</h1>
       <%= link_to "Add Category",
             menu_categories_path,
@@ -19,7 +20,10 @@
         <% end %>
     </ul>
     <% if @menu_items.empty? %>
-        <h1 class="Message-text Item-path">No Items found</h1>
+        <div class="Item-path">
+           <%= image_tag "empty-page.png", alt: "No Items Found" %>
+           <h1 class="Message-text">No Items found</h1>
+        </div>
     <% else %>
         <ul class="Item-menuCategory-body">
             <% @menu_items.each do |item| %>
@@ -29,8 +33,18 @@
                       <p class="MenuCategory-name"> <%= item.name %> </p>
                   </div>
                   <div class="MenuCategory-right">
-                        <%= link_to "Edit", update_item_view_path(id: item.id) , class: "EditItem-btn" , method: "get" %>
-                        <%= link_to "Delete", menu_items_path(id: item.id), class: "DeleteItem-btn"  ,method: "delete" %>
+                      <%= form_with(url: "/update_menuitem_view/#{item.id}", method: "get") do %>
+                           <%= image_submit_tag("pencil.png",
+                                                 class: "MenuCategory-updateIcon",
+                                                 alt: "Pencil Icon",
+                                                 title: "Edit #{item.name}" ) %>
+                      <% end %>
+                      <%= form_with(url: "/menu_items/#{item.id}", method: "delete") do %>
+                           <%= image_submit_tag("trash-can.png",
+                                                 class: "MenuCategory-deleteIcon",
+                                                 alt: "Trash Can",
+                                                 title: "Delete #{item.name}") %>
+                      <% end %>
                   </div>
                 </li>
             <% end %>
@@ -49,7 +63,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_with(url: "/menu_categories", method: "post")%>
+      <%= form_with(url: "/create_menu_category", method: "post")%>
       <div class="modal-body">
         <%= text_field_tag "category_name",
                             nil,

@@ -1,5 +1,5 @@
 <%= link_to "<< Previous", menu_items_view_path(id: @item.menu_category_id) ,class: "Previous" %>
-<div class="CategoryUpdate-container">
+<div class="CategoryUpdate-container MenuItem-update">
     <%= form_with(url: "/menu_items/#{@id}", method: "patch") do %>
          <%= text_field_tag "item_name",
                              @item.name,
