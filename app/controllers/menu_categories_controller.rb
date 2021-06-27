@@ -3,7 +3,7 @@ class MenuCategoriesController < ApplicationController
     @categories = MenuCategory.paginate(page: params[:page])
   end
 
-  def create
+  def create_category
     new_category = MenuCategory.new(
       name: params[:category_name].capitalize(),
       status: "Active",
@@ -11,7 +11,11 @@ class MenuCategoriesController < ApplicationController
     unless new_category.save
       flash[:error] = new_category.errors.full_messages.join(", ")
     end
-    redirect_to menu_categories_path
+    if params[:path] == "menu_category"
+      redirect_to menu_categories_path
+    else
+      redirect_to menu_items_view_path(id: 0)
+    end
   end
 
   def update
@@ -23,8 +27,7 @@ class MenuCategoriesController < ApplicationController
   end
 
   def destroy
-    id = params[:id]
-    category = MenuCategory.find(id)
+    category = MenuCategory.find(params[:id])
     category.destroy
     redirect_to menu_categories_path
   end
