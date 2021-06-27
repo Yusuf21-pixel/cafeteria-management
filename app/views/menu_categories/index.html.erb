@@ -5,7 +5,10 @@
             "data-target" => "#exampleModal",
             class: "Add-category" } %>
 <% if @categories.empty? %>
-    <h1 class="Message-text Category-path">No categories found</h1>
+    <div class="Category-path">
+      <%= image_tag "empty-page.png", alt: "No Items Found" %>
+      <h1 class="Message-text">No categories found</h1>
+    </div>
 <% else %>
     <ul class="MenuCategory-body">
       <% @categories.each do |category| %>
@@ -47,7 +50,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_with(url: "/menu_categories", method: "post")%>
+      <%= form_with(url: "/create_menu_category", method: "post")%>
       <div class="modal-body">
         <%= text_field_tag "category_name",
                             nil,
@@ -55,6 +58,7 @@
                             placeholder: "Category name",
                             autofocus: true,
                             required: true %>
+        <%= hidden_field_tag 'path', "menu_category" %>
         <%= submit_tag "Add", class: "Add-btn" %>
       </div>
     </div>
