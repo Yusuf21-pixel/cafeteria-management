@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
-      render plain: "true"
     else
       redirect_to sessions_path
     end
