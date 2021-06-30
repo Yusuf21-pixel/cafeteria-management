@@ -6,6 +6,7 @@
 import Rails from "@rails/ujs"
 
 //= require jquery
+//= require jquery_ujs
 //= require popper
 //= require turbolinks
 //= require bootstrap
