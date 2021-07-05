@@ -20,7 +20,7 @@ class MenuItemsController < ApplicationController
     else
       @category = MenuCategory.find(@id)
     end
-    @menu_items = @category.menu_items unless @category.nil?
+    @menu_items = @category.menu_items.order(:name) unless @category.nil?
   end
 
   def update_view

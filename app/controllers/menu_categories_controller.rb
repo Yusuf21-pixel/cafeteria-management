@@ -1,6 +1,6 @@
 class MenuCategoriesController < ApplicationController
   def index
-    @categories = MenuCategory.paginate(page: params[:page])
+    @categories = MenuCategory.all.order(:name)
   end
 
   def create_category
