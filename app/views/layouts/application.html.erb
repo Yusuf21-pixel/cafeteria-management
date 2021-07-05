@@ -23,24 +23,23 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle"  style="color:white" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                Menu's
-              </a>
-              <ul class="dropdown-menu" id="abcd" aria-labelledby="navbarDropdown">
-                <li><%= link_to "Menu Categories", menu_categories_path, class:"dropdown-item"%></li>
-                <li><%= link_to "Menu Items", menu_items_view_path(id: 0), class:"dropdown-item" %></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle"  style="color:white" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Orders
               </a>
               <ul class="dropdown-menu" id="abcd" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Pending Orders</a></li>
-                <li><a class="dropdown-item" href="#">Delivered Orders</a></li>
+                <li><a class="dropdown-item" href="#">Current Orders</a></li>
+                <li><a class="dropdown-item" href="#">My Orders</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">All Orders</a></li>
               </ul>
             </li>
+            <div class = "User-profile">
+                <% if (@current_user) %>
+                   <h1 class="User-profile-greeting">Welcome <%= @current_user.name %> </h1>
+                    <li class="nav-item">
+                      <%= link_to "Sign-out", destroy_session_path ,method: "delete", style:"color:white", class:"nav-link User-profile-signout" %>
+                    </li>
+                <% end %>
+            </div>
           </ul>
         </div>
       </div>

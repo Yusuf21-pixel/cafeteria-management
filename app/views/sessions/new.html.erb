@@ -1,7 +1,7 @@
 <section class = "SignIn-container">
   <div class = "SignIn-container-content">
       <p class = "NewUsers-title">Sign In</p>
-      <%= form_with(url: sessions_path) do |form| %>
+      <%= form_with(url: sessions_path, method: "post") do |form| %>
           <div class = "Form-section">
               <%= form.email_field :email,
                                    class:"Form-input",
