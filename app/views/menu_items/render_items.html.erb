@@ -26,6 +26,7 @@
         </div>
     <% else %>
         <ul class="Item-menuCategory-body">
+           <h1 class="MenuItem-head"> <%= @category.name %> </h1>
             <% @menu_items.each do |item| %>
                 <li class="MenuCategory-item MenuItem-item">
                   <div class="MenuCategory-left">
