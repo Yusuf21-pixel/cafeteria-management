@@ -1,5 +1,7 @@
 # users_controller.rb
 class UsersController < ApplicationController
+  # skip_before_action :current_user
+
   def new
     render "new"
   end
@@ -12,9 +14,11 @@ class UsersController < ApplicationController
                     address: params[:address],
                     role: params[:role])
     if user.save
-      render plain: "succesful"
+      session[:current_user_id] = user.id
+      Cart.create!(user_id: user.id)
+      redirect_to users_menu_path(id: 0)
     else
-      render plain: "error"
+      redirect_to new_user_path
     end
   end
 end
