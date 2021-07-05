@@ -103,6 +103,7 @@
   margin-right: 50px;
   position: fixed;
   z-index: -1;
+  overflow: auto;
 }
 
 .Item-path {
@@ -157,4 +158,23 @@
   border: none;
   box-shadow: 2px 3px 3px #888888;
   margin-top: 20px;
+}
+
+.MenuItem-head {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #12344d;
+  border-bottom: 0.5px solid #cfd7df;
+  padding: 10px;
+}
+
+.Inactive-category {
+  font-size: 17px;
+  color: #888888;
+}
+
+.Inactive-category:hover {
+  color: #888888;
+  text-decoration: none;
+  cursor: context-menu;
 }

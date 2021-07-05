@@ -8,7 +8,25 @@
 .nav-link {
   color: white;
 }
+/* @media screen and( min-width: 400px ) {
+  .navbar-collapse {
+    display: block;
+    width: 30%;
+    height: 100%;
+  }
+}
+.collapse {
+  display: block;
+} */
 
 .NoItemsFound {
   margin: 0px auto;
+}
+.User-profile {
+  color: white;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  text-align: right;
+  right: 0;
 }
