@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
+      redirect_to users_menu_path(id: 0)
     else
-      redirect_to sessions_path
+      redirect_to root_path
     end
   end
 
