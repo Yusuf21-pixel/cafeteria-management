@@ -1,0 +1,13 @@
+<%= link_to "<< Previous", checkout_path,method: "get" ,class: "Previous" %>
+<div class="CategoryUpdate-container">
+    <%= form_with(url: "/addresses/#{@id}", method: "patch") do %>
+        <%= text_area_tag "address",
+                           @address,
+                           rows: 5,
+                           class: "Add-category-text",
+                           placeholder: "Address",
+                           autofocus: true,
+                           required: true %>
+        <%= submit_tag "Update", class: "Form-submit Update-btn" %>
+    <% end %>
+</div>
