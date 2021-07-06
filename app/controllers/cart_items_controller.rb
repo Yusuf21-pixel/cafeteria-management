@@ -4,8 +4,8 @@ class CartItemsController < ApplicationController
 
   def create
     cart = Cart.find_by(user_id: @current_user.id)
+    menu_item = MenuItem.find(params[:id])
     unless (cart.cart_items.find_by(menu_item_id: params[:id]))
-      menu_item = MenuItem.find(params[:id])
       cart_item = CartItem.new(cart_id: cart.id,
                                menu_item_id: menu_item.id,
                                menu_item_name: menu_item.name,
@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
         flash[:error] = "Something went wrong"
       end
     end
-    redirect_to users_menu_path(id: 0)
+    redirect_to users_menu_path(id: menu_item.menu_category_id)
   end
 
   def add_quantity
@@ -51,6 +51,7 @@ class CartItemsController < ApplicationController
   end
 
   def checkout
-    render plain: "hello"
+    @items = Cart.find_by(user_id: @current_user.id).cart_items
+    @addresses = @current_user.addresses.order(use_address: :desc)
   end
 end
