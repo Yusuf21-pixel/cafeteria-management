@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_033941) do
+ActiveRecord::Schema.define(version: 2021_07_06_002757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.text "addresses"
+    t.text "address"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "use_address"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -57,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_033941) do
 
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
-    t.bigint "menu_item_id"
     t.string "menu_item_name"
     t.float "menu_item_price"
     t.datetime "created_at", precision: 6, null: false
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_033941) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "delivered_at"
+    t.text "address"
+    t.string "phone_no"
   end
 
   create_table "users", force: :cascade do |t|
