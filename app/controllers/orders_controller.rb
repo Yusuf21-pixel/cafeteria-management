@@ -19,4 +19,33 @@ class OrdersController < ApplicationController
     end
     redirect_to users_menu_path(id: 0)
   end
+
+  def customer_order
+  end
+
+  def cancel_order
+    if (@current_user.role == "customer")
+      order = @current_user.orders.find(params[:id])
+    else
+      order = Order.find(params[:id])
+    end
+    if (order.archived_by.nil?)
+      order.archived_by = @current_user.role
+      order.save!
+    end
+    redirect_to customer_orders_path
+  end
+
+  def index
+    @order_detail = Order.find(params[:id])
+  end
+
+  def update_pending_order
+    order = Order.find(params[:id])
+    if (order.archived_by.nil? && order.delivered_at.nil?)
+      order.delivered_at = DateTime.now
+      order.save!
+    end
+    redirect_to customer_orders_path
+  end
 end
