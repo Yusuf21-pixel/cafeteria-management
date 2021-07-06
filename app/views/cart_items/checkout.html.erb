@@ -52,7 +52,11 @@
         <% end %>
     </ul>
   </div>
-  <%= link_to "Confirm-order", orders_path, method: "post",class: "Confirm-order"%>
+  <% if @current_user.addresses.empty? %>
+     <a href="javascript:void(0)" class="Confirm-order Disable-confirm-order" disabled title="Add address to confirm order"> Confirm order </a>
+  <% else %>
+     <%= link_to "Confirm-order", orders_path, method: "post",class: "Confirm-order"%>
+  <% end %>
 </ul>
 
 <!-- Modal -->
