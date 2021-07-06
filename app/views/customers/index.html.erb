@@ -26,7 +26,7 @@
         <ul class="Item-menuCategory-body-customer">
          <h1 class="MenuItem-head"> <%= @category.name %> </h1>
             <% @menu_items.each do |item| %>
-                <div class="card" style="width: 100%;">
+                <li class="card" style="width: 100%;">
                   <div class="card-body">
                     <div class = "card-body-left">
                         <h5 class="card-title"> <%= item.name %> </h5>
@@ -40,7 +40,7 @@
                         <% end %>
                     </div>
                   </div>
-                </div>
+                </li>
             <% end %>
         </ul>
     <% end %>
