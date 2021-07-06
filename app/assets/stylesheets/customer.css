@@ -217,7 +217,137 @@
   margin-top: 10px;
 }
 
-.test {
-  width: 100px;
-  height: 100px;
+.Quantity-text-checkout {
+  margin-left: 120px;
+  font-size: 1.1rem;
+  color: #60b246;
+}
+
+.Checkout-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  border-radius: 4px;
+  box-shadow: 2px 5px 8px #888888;
+  padding: 10px 5px;
+}
+
+.Checkout-item-price {
+  font-size: 1.1rem;
+  color: #535665;
+}
+
+.Add-address {
+  background-color: #12344d;
+  padding: 10px 40px;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 20px;
+  font-size: 1.3rem;
+  height: fit-content;
+}
+
+.Add-new-address {
+  margin: 0px auto;
+  padding: 10px;
+  background-color: #12344d;
+  color: white;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 1.2rem;
+  display: block;
+  max-width: fit-content;
+  justify-content: center;
+}
+.Add-new-address:hover {
+  color: white;
+  background-color: #12335d;
+  text-decoration: none;
+}
+.Checkout-cart-right {
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+.Checkout-cart-right .Quantity-text-checkout {
+  margin: 10px auto;
+  margin-left: 10px;
+}
+
+.Checkout-cart-right .Checkout-item-price {
+  margin-left: 50px;
+}
+
+.Address-item {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  margin-top: 30px;
+  border-bottom: 0.5px solid #cfd7df;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.Address-text {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  width: 530px;
+  overflow-wrap: break-word;
+}
+
+.Address-left {
+  display: flex;
+  align-items: center;
+}
+
+.Address-right {
+  display: flex;
+  align-items: center;
+}
+
+.Total-amount-checkout {
+  font-size: 1.3rem;
+  color: #12344d;
+  font-weight: bolder;
+}
+
+.Total-amount {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 3px dashed #cfd7df;
+  padding: 10px;
+}
+
+.Address-checkout {
+  margin-top: 20px;
+  border: 1px solid #009efb;
+  padding: 10px;
+  padding-bottom: 0px;
+  border-radius: 4px;
+}
+
+.Confirm-order {
+  color: white;
+  padding: 12px 20px;
+  background-color: #009efb;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 4px;
+  display: block;
+  max-width: 300px;
+  text-align: center;
+  justify-content: center;
+  margin: 0px auto;
+  margin-top: 10px;
+}
+
+.Confirm-order:hover {
+  color: white;
+  text-decoration: none;
 }
