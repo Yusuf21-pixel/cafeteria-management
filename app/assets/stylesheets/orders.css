@@ -1,0 +1,175 @@
+.table-responsive {
+  width: 90%;
+  margin: 10px auto;
+  margin-top: 7%;
+}
+.table-head {
+  background-color: #ebeff3;
+  text-align: center;
+  font-weight: bold;
+}
+.table-body {
+  background-color: white;
+  text-align: center;
+}
+
+.Cancelled-order-text {
+  background: #ffecf0;
+  color: #c82124;
+  border: solid 1px #ffd0d6;
+  margin: 0 auto;
+  width: 146px;
+  text-align: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.Cancel-order-btn {
+  color: white;
+  background-color: #d72d30;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.Cancel-order-btn:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #d72d10;
+}
+
+.Delivered-order {
+  background-color: #25ac3e;
+  text-align: center;
+  margin: 0 auto;
+  color: #fff;
+  padding: 4px 6px;
+  border-radius: 4px;
+  width: 146px;
+}
+
+.Pending-order-text {
+  background-color: #12344d;
+  margin: 0 auto;
+  color: #fff;
+  width: 146px;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.View-order-details-btn {
+  color: white;
+  background-color: #039be5;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+}
+
+.View-order-details-btn:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #039be5;
+}
+
+.Order-id,
+.Status-view-order {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.Status-view-order {
+  margin-right: 10px;
+}
+
+.Address-view-order {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  font-weight: bold;
+  width: 105px;
+}
+
+.View-order-top {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #cfd7df;
+}
+
+.Status-view {
+  display: flex;
+  align-items: center;
+}
+
+.View-order-top-firstChild {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Address-view-order-location,
+.Order-id-text {
+  font-size: 1.1rem;
+  line-height: 1.3;
+  margin-left: 10px;
+}
+
+.Address-view {
+  display: flex;
+  align-items: baseline;
+}
+
+.Order {
+  display: flex;
+  align-items: center;
+}
+
+.View-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.MenuName-view-order {
+  font-size: 1.2rem;
+  max-width: 450px;
+  overflow-wrap: break-word;
+}
+
+.MenuQuantity-view-quantity {
+  margin-left: 10px;
+}
+
+.MenuItem-view-order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.View-order-container {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  margin-top: 40px;
+  margin-left: 312px;
+  width: 51%;
+  height: fit-content;
+  margin-right: 50px;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.Mark-as-delivered-btn {
+  background-color: #12344d;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+.Mark-as-delivered-btn:hover {
+  color: white;
+  background-color: #12335d;
+  text-decoration: none;
+}
+
+.Disable-confirm-order {
+  opacity: 0.6;
+}

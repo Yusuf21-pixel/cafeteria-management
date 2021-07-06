@@ -1,0 +1,47 @@
+<% if @current_user.role == "customer" && @current_user.orders.empty? %>
+    <div class="Category-path">
+      <%= image_tag "empty-page.png", alt: "No Items Found" %>
+      <h1 class="Message-text">No orders yet</h1>
+    </div>
+<% else %>
+  <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class = "table-head">
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Delivered At</th>
+            <th scope="col"> Details </th>
+          </tr>
+        </thead>
+        <tbody class = "table-body">
+          <% orders = (@current_user.role == "owner") ?  Order.all : @current_user.orders %>
+          <% orders.order(:date).each do |ord| %>
+          <tr>
+            <th scope="row"> #<%= ord.id %> </th>
+            <td> <%= ord.date.to_s(:long) %> </td>
+            <% if ord.archived_by == "customer" %>
+               <td> <p class="Cancelled-order-text"> Cancelled </p> </td>
+               <td> - </td>
+            <% elsif ord.archived_by == "owner" || ord.archived_by == "clerk" %>
+               <td> <p class="Cancelled-order-text"> Cancelled by shop </p> </td>
+               <td> -</td>
+            <% elsif ord.delivered_at.nil? %>
+               <% if @current_user.role == "owner" || @current_user.role == "clerk" %>
+                   <td> <%= link_to "Mark as delivered",mark_as_delivered_path(id: ord.id),method: "put", class: "Mark-as-delivered-btn" %> </td>
+               <% else %>
+                  <td> <p class="Pending-order-text"> Pending </p> </td>
+               <% end %>
+               <td> <%= link_to "Cancel order", cancel_order_path(id: ord.id), method: "put",class: "Cancel-order-btn" %> </td>
+            <% else %>
+               <td> <p class="Delivered-order"> Delivered </p> </td>
+               <td> <%= ord.delivered_at.to_s(:long) %> </td>
+            <% end %>
+            <td> <%= link_to "View details", orders_path(id: ord.id), class: "View-order-details-btn" %> </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+<% end %>

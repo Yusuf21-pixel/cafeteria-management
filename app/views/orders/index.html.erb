@@ -1,0 +1,40 @@
+<%= link_to "<< Previous", customer_orders_path ,class: "Previous" %>
+<div class="View-order-container">
+  <div class="View-order-top">
+    <div class="View-order-top-firstChild">
+       <div class="Order">
+          <h2 class="Order-id"> Order ID : </h2>
+          <h3 class="Order-id-text"> #<%= @order_detail.id %> </h3>
+       </div>
+       <div class="Status-view">
+          <p class="Status-view-order"> Status : </p>
+          <% if @order_detail.archived_by == "customer" %>
+              <p class="Cancelled-order-text"> Cancelled </p>
+          <% elsif @order_detail.archived_by == "owner" || @order_detail.archived_by == "clerk" %>
+              <p class="Cancelled-order-text"> Cancelled by shop </p>
+          <% elsif @order_detail.delivered_at.nil? %>
+              <p class="Pending-order-text"> Pending </p>
+          <% else %>
+              <p class="Delivered-order"> Delivered </p>
+          <% end %>
+       </div>
+    </div>
+    <div class="Address-view">
+      <h5 class="Address-view-order">Address : </h5>
+      <h6 class="Address-view-order-location"> <%= @order_detail.address %> </h6>
+    </div>
+  </div>
+  <% @order_detail.order_items.each do |order_item| %>
+     <div class="MenuItem-view-order">
+        <div class="View-item-left">
+            <h4 class="MenuName-view-order"> <%= order_item.menu_item_name %> </h4>
+            <h4 class="MenuQuantity-view-quantity"> x <%= order_item.quantity %> </h4>
+        </div>
+        <h3 class="Checkout-item-price">&#36; <%= (order_item.quantity * order_item.menu_item_price).round(2) %> </h3>
+    </div>
+  <% end %>
+  <div class="Total-amount">
+      <h2 class="Total-amount-checkout">BILL TOTAL : </h2>
+      <h3 class="Total-amount-checkout"> &#36; <%= 1234 %>
+  </div>
+</div>
