@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   put "/update_use_address" => "addresses#update_use_address", as: :update_use_address
   post "/orders" => "orders#create", as: :create_orders
   get "/update_address_view/:id" => "addresses#update_address_view", as: :update_address_view
+  get "/customer_orders" => "orders#customer_orders", as: :customer_orders
+  put "/cancel_order/:id" => "orders#cancel_order", as: :cancel_order
+  put "/update_pending_order" => "orders#update_pending_order", as: :mark_as_delivered
 end
