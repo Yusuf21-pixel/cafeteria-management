@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "sessions#new"
   post "/signin" => "sessions#create", as: :sessions
-  resources :users, :menu_categories, :menu_items, :carts, :cart_items, :orders, :order_items
+  resources :users, :menu_categories, :menu_items, :carts, :cart_items, :orders, :order_items, :addresses
   get "/user/menu/:id" => "customers#index", as: :users_menu
   delete "/signout" => "sessions#destroy", as: :destroy_session
   get "/update_menucategory_view/:id" => "menu_categories#update_view", as: :update_category_view
@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   put "/reduct_quantity/:id" => "cart_items#reduct_quantity", as: :reduct_quantity
   delete "/delete_all_items" => "cart_items#delete_all", as: :destroy_all_items
   get "/checkout" => "cart_items#checkout", as: :checkout
+  put "/update_use_address" => "addresses#update_use_address", as: :update_use_address
+  post "/orders" => "orders#create", as: :create_orders
+  get "/update_address_view/:id" => "addresses#update_address_view", as: :update_address_view
 end
