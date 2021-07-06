@@ -4,5 +4,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   validates :role, presence: true
   has_many :addresses
+  has_many :orders
   has_secure_password
 end
