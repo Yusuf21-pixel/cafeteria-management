@@ -123,36 +123,6 @@
     margin-left: 70%;
   }
 }
-/*
-@media screen and (min-width: 0px) and (max-width: 369px) {
-  .Item-menuCategory-body {
-    width: 30%;
-  }
-  .MenuCategory-navbar {
-    visibility: hidden;
-  }
-}
-@media screen and (min-width: 370px) and (max-width: 640px) {
-  .Item-menuCategory-body {
-    width: 58%;
-    margin-left: 180px;
-  }
-  .MenuCategory-navbar {
-    width: 30%;
-  }
-} */
-
-/* @media screen and (min-width: 720px) {
-  .Item-menuCategory-body {
-    width: 50%;
-  }
-} */
-/*
-@media screen and (min-width: 640px) {
-  .Item-path {
-    margin-left: 70%;
-  }
-} */
 
 .MenuItem-item {
   border: none;
