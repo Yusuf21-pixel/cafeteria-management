@@ -6,7 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
-      redirect_to users_menu_path(id: 0)
+      if (user.role == "owner")
+        redirect_to menu_categories_path
+      else
+        redirect_to users_menu_path(id: 0)
+      end
     else
       redirect_to root_path
     end
