@@ -1,7 +1,5 @@
 # users_controller.rb
 class UsersController < ApplicationController
-  # skip_before_action :current_user
-
   def new
     render "new"
   end
@@ -11,7 +9,6 @@ class UsersController < ApplicationController
                     phone_no: params[:phone_no],
                     email: params[:email],
                     password: params[:password],
-                    address: params[:address],
                     role: params[:role])
     if user.save
       session[:current_user_id] = user.id
