@@ -51,7 +51,8 @@ class CartItemsController < ApplicationController
   end
 
   def checkout
-    @items = Cart.find_by(user_id: @current_user.id).cart_items
+    @cart = Cart.find_by(user_id: @current_user.id)
+    @items = @cart.cart_items
     @addresses = @current_user.addresses.order(use_address: :desc)
   end
 end

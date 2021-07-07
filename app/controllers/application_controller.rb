@@ -2,6 +2,30 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_action :current_user
 
+  def ensure_user_logged_in
+    unless current_user
+      redirect_to root_path
+    end
+  end
+
+  def ensure_owner
+    unless current_user.role == "owner"
+      redirect_to access_control_path
+    end
+  end
+
+  def ensure_clerk
+    unless current_user.role == "clerk"
+      redirect_to access_control_path
+    end
+  end
+
+  def ensure_customer
+    unless current_user.role == "customer"
+      redirect_to access_control_path
+    end
+  end
+
   def current_user
     return @current_user if @current_user
 

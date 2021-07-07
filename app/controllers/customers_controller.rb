@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
       @category = MenuCategory.find(@id)
     end
     @menu_items = @category.menu_items unless @category.nil?
-    @cart_items = Cart.find_by(user_id: @current_user.id).cart_items.order(:id)
+    @cart = Cart.find_by(user_id: @current_user.id)
+    @cart_items = @cart.cart_items.order(:id)
   end
 end
