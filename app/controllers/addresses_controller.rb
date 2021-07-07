@@ -8,7 +8,9 @@ class AddressesController < ApplicationController
         found = true
       end
     end
-    unless (found)
+    if (found)
+      flash[:error] = "You have taken  already this Address"
+    else
       location = Address.new(address: params[:address], user_id: @current_user.id, use_address: false)
       if addresses.empty?
         location.use_address = true
