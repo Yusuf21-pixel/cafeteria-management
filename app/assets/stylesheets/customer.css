@@ -320,8 +320,9 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  border: 3px dashed #cfd7df;
+  /* border: 3px dashed #cfd7df; */
   padding: 10px;
+  background-color: #e4eaf0;
 }
 
 .Address-checkout {

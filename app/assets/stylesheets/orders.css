@@ -76,7 +76,6 @@
 .Order-id,
 .Status-view-order {
   font-size: 1.3rem;
-  font-weight: bold;
 }
 
 .Status-view-order {
@@ -86,7 +85,6 @@
 .Address-view-order {
   font-size: 1.3rem;
   margin-top: 20px;
-  font-weight: bold;
   width: 105px;
 }
 

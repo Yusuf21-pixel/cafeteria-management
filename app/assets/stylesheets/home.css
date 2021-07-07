@@ -22,3 +22,19 @@
   text-align: right;
   right: 0;
 }
+
+.Flash-error {
+  margin: 0px auto;
+  margin-top: 50px;
+  background: #ffecf0;
+  color: #c82124;
+  border: solid 1px #ffd0d6;
+  padding: 20px 40px;
+  border-radius: 4px;
+  width: fit-content;
+  font-size: 1.5rem;
+}
+
+.Flash-error-duplicate {
+  margin-top: -15px;
+}
