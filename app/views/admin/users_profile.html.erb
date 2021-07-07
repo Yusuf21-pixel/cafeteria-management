@@ -1,0 +1,31 @@
+<%= link_to "<< Previous", admin_index_path, method: "get" ,class: "Previous" %>
+<div class="table-responsive" style="margin-top:30px;">
+    <table class="table table-hover table-bordered">
+      <thead class = "table-head">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Update</th>
+        </tr>
+      </thead>
+      <tbody class = "table-body">
+        <% @users.each do |user| %>
+          <tr>
+            <th scope="row"> #<%= user.id %> </th>
+            <th scope="row"> <%= user.name %> </th>
+             <th scope="row"> <%= user.phone_no %> </th>
+            <th scope="row"> <%= user.email %> </th>
+            <th scope="row"> <%= user.role %> </th>
+            <% if user.role == "customer" %>
+               <th scope="row"> - </th>
+            <% else %>
+               <th scope="row"> <%= link_to "Update Profile",update_special_users_view_path(id: user.id),class: "Mark-as-delivered-btn" %> </th>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

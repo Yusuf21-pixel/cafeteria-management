@@ -1,0 +1,37 @@
+<%= link_to "<< Previous", users_profile_path, method: "get" ,class: "Previous" %>
+<section class = "SignIn-container Owner-previous">
+  <div class = "SignIn-container-content">
+      <%= form_with(url: edit_special_users_path, method: "patch") do |form| %>
+          <div class = "Form-section">
+              <%= form.text_field :name,
+                                  value: @user.name,
+                                  class:"Form-input",
+                                  placeholder:"Name",
+                                  autofocus: true,
+                                  pattern: ".{3,}",
+                                  title: "Name should have atleast 3 characters",
+                                  required: true %>
+          </div>
+          <div class = "Form-section">
+              <%= form.text_field :phone_no,
+                                  value: @user.phone_no,
+                                  class:"Form-input",
+                                  placeholder:"Phone number",
+                                  pattern: "[0-9]{10}",
+                                  title: "Phone number should be 10 digit",
+                                  required: true %>
+          </div>
+          <div class = "Form-section">
+              <%= form.email_field :email,
+                                   value: @user.email,
+                                   class:"Form-input",
+                                   placeholder: "Email address",
+                                   required: true %>
+          </div>
+          <%= hidden_field_tag "id", @id %>
+          <div class = "Form-section">
+              <%= form.submit "Update", class:"Form-submit"  %>
+          </div>
+      <% end %>
+  </div>
+</section>
