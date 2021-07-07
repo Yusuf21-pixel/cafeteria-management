@@ -32,10 +32,24 @@
                                       title: "Please lengthen your password to 7 or more characters",
                                       required: true %>
           </div>
+          <% if @current_user && @current_user.role == "owner" %>
+             <div class="Owner-role-signup" >
+                <h3 class="MenuCategory-status-title">Role: </h3>
+                <div class="Status-container">
+                    <%= radio_button_tag "role", "owner" %>
+                    <p class="Status-label"> Owner </p>
+                </div>
+                <div class="Status-container">
+                    <%= radio_button_tag "role", "clerk", true %>
+                    <p class="Status-label"> Clerk </p>
+                </div>
+             </div>
+          <% else %>
+             <%= hidden_field_tag 'role', 'customer' %>
+          <% end %>
           <div class = "Form-section">
               <%= form.submit "Sign-up!", class:"Form-submit"  %>
           </div>
-          <%= hidden_field_tag 'role', 'customer' %>
       <% end %>
       <hr class="Bottom-line">
       <div class="ExistingUser">

@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get "/customer_orders" => "orders#customer_orders", as: :customer_orders
   put "/cancel_order/:id" => "orders#cancel_order", as: :cancel_order
   put "/update_pending_order" => "orders#update_pending_order", as: :mark_as_delivered
+  get "/admin" => "admin#index", as: :admin_index
 end
