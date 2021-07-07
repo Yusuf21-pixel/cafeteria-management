@@ -11,6 +11,11 @@
     </div>
 <% else %>
     <ul class="MenuCategory-body">
+      <% if flash[:error] %>
+        <p class = "Flash-error Flash-error-duplicate">
+            <%= flash[:error] %>
+        </p>
+      <% end %>
       <% @categories.each do |category| %>
           <li class="MenuCategory-item">
               <div class="MenuCategory-left">
@@ -31,7 +36,8 @@
                   <%= image_submit_tag("trash-can.png",
                                         class: "MenuCategory-deleteIcon",
                                         alt: "Trash Can",
-                                        title: "Delete #{category.name}") %>
+                                        title: "Delete #{category.name}",
+                                        data: { confirm: 'Are you sure want to delete ?' } ) %>
                 <% end %>
               </div>
           </li>
@@ -59,7 +65,7 @@
                             autofocus: true,
                             required: true %>
         <%= hidden_field_tag 'path', "menu_category" %>
-        <%= submit_tag "Add", class: "Add-btn" %>
+        <%= submit_tag "Add",class: "Add-btn" %>
       </div>
     </div>
   </div>

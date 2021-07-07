@@ -1,3 +1,8 @@
+<% if flash[:error] %>
+  <p class = "Flash-error">
+      <%= flash[:error] %>
+  </p>
+<% end %>
 <section class = "SignIn-container">
   <div class = "SignIn-container-content">
       <p class = "NewUsers-title">Sign In</p>

@@ -1,4 +1,14 @@
-<section class = "SignIn-container">
+<% if flash[:error] %>
+  <p class = "Flash-error">
+      <%= flash[:error] %>
+  </p>
+<% end %>
+<% if @current_user && @current_user.role == "owner" %>
+   <%= link_to "<< Previous", admin_index_path, method: "get" ,class: "Previous" %>
+   <section class = "SignIn-container Owner-previous">
+<% else %>
+   <section class = "SignIn-container">
+<% end %>
   <div class = "SignIn-container-content">
       <%= form_with(url: users_path) do |form| %>
           <div class = "Form-section">
@@ -51,10 +61,12 @@
               <%= form.submit "Sign-up!", class:"Form-submit"  %>
           </div>
       <% end %>
-      <hr class="Bottom-line">
-      <div class="ExistingUser">
-        <p class="ExistingUser-text">Already existing user?  </p>
-        <%= link_to "Sign In", root_path, class: "ExistingUser-link", title: "Log In" %>
-      </div>
+      <% unless @current_user && @current_user.role == "owner" %>
+        <hr class="Bottom-line">
+        <div class="ExistingUser">
+            <p class="ExistingUser-text">Already existing user?  </p>
+            <%= link_to "Sign In", root_path, class: "ExistingUser-link", title: "Log In" %>
+        </div>
+      <% end %>
   </div>
 </section>
