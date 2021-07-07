@@ -10,6 +10,7 @@
           <tr>
             <th scope="col">Order ID</th>
             <th scope="col">Date</th>
+            <th scope="col">Time</th>
             <th scope="col">Status</th>
             <th scope="col">Delivered At</th>
             <th scope="col"> Details </th>
@@ -17,10 +18,11 @@
         </thead>
         <tbody class = "table-body">
           <% orders = (@current_user.role == "owner" || @current_user.role == "clerk") ?  Order.all : @current_user.orders %>
-          <% orders.order(:date).each do |ord| %>
+          <% orders.order(id: :desc).each do |ord| %>
           <tr>
-            <th scope="row"> #<%= ord.id %> </th>
-            <td> <%= ord.date.to_s(:long) %> </td>
+            <th scope="row"> <%= ord.id %> </th>
+            <td> <%= ord.date %> </td>
+            <td> <%= ord.time %> </td>
             <% if ord.archived_by == "customer" %>
                <td> <p class="Cancelled-order-text"> Cancelled </p> </td>
                <td> - </td>
@@ -33,12 +35,12 @@
                <% else %>
                   <td> <p class="Pending-order-text"> Pending </p> </td>
                <% end %>
-               <td> <%= link_to "Cancel order", cancel_order_path(id: ord.id), method: "put",class: "Cancel-order-btn" %> </td>
+               <td> <%= link_to "Cancel order", cancel_order_path(id: ord.id), method: "put",class: "Cancel-order-btn", data: { confirm: 'Are you sure want to cancel this order ?' }  %> </td>
             <% else %>
                <td> <p class="Delivered-order"> Delivered </p> </td>
-               <td> <%= ord.delivered_at.to_s(:long) %> </td>
+               <td> <%= ord.delivered_at.strftime("%Y-%m-%d  [%l:%M %p]")  %> </td>
             <% end %>
-            <td> <%= link_to "View details", orders_path(id: ord.id), class: "View-order-details-btn" %> </td>
+            <td> <%= link_to "View details", orders_path(id: ord.id, owner: "yes"), class: "View-order-details-btn" %> </td>
           </tr>
           <% end %>
         </tbody>

@@ -1,10 +1,14 @@
-<%= link_to "<< Previous", customer_orders_path ,class: "Previous" %>
+<% if(not params[:owner]) %>
+    <%= link_to "<< Previous", invoices_path ,class: "Previous" %>
+<% else %>
+   <%= link_to "<< Previous", customer_orders_path ,class: "Previous" %>
+<% end %>
 <div class="View-order-container">
   <div class="View-order-top">
     <div class="View-order-top-firstChild">
        <div class="Order">
-          <h2 class="Order-id"> Order ID : </h2>
-          <h3 class="Order-id-text"> #<%= @order_detail.id %> </h3>
+          <h2 class="Order-id"> ORDER-ID : </h2>
+          <h3 class="Order-id-text"> <%= @order_detail.id %> </h3>
        </div>
        <div class="Status-view">
           <p class="Status-view-order"> Status : </p>
@@ -19,22 +23,36 @@
           <% end %>
        </div>
     </div>
-    <div class="Address-view">
-      <h5 class="Address-view-order">Address : </h5>
-      <h6 class="Address-view-order-location"> <%= @order_detail.address %> </h6>
-    </div>
+    <% unless @order_detail.address == "walk-in-customer"%>
+      <div class="Address-view">
+        <h5 class="Address-view-order">Address : </h5>
+        <h6 class="Address-view-order-location"> <%= @order_detail.address %> </h6>
+      </div>
+    <% end %>
   </div>
-  <% @order_detail.order_items.each do |order_item| %>
-     <div class="MenuItem-view-order">
-        <div class="View-item-left">
-            <h4 class="MenuName-view-order"> <%= order_item.menu_item_name %> </h4>
-            <h4 class="MenuQuantity-view-quantity"> x <%= order_item.quantity %> </h4>
-        </div>
-        <h3 class="Checkout-item-price">&#36; <%= (order_item.quantity * order_item.menu_item_price).round(2) %> </h3>
-    </div>
-  <% end %>
-  <div class="Total-amount">
-      <h2 class="Total-amount-checkout">BILL TOTAL : </h2>
-      <h3 class="Total-amount-checkout"> &#36; <%= 1234 %>
-  </div>
+
+   <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class = "table-head Invoice-head">
+        <tr>
+          <th scope="col">ITEM</th>
+          <th scope="col">QUANTITY</th>
+          <th scope="col">PRICE</th>
+        </tr>
+      </thead>
+       <tbody class = "table-body">
+        <% @order_detail.order_items.each do |order_item| %>
+            <tr>
+              <th scope="row"> <%= order_item.menu_item_name %> </th>
+              <th scope="row"> <%= order_item.quantity %> </th>
+              <th scope="row"> &#36; <%= (order_item.quantity * order_item.menu_item_price).round(2) %> </th>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+<div class="Total-amount">
+    <h2 class="Total-amount-checkout">BILL TOTAL : </h2>
+    <h3 class="Total-amount-checkout"> &#36; <%= Order.tot_amount(@order_detail.id) %>
+</div>
 </div>

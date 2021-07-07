@@ -44,7 +44,8 @@
                            <%= image_submit_tag("trash-can.png",
                                                  class: "MenuCategory-deleteIcon",
                                                  alt: "Trash Can",
-                                                 title: "Delete #{item.name}") %>
+                                                 title: "Delete #{item.name}",
+                                                 data: { confirm: 'Are you sure want to delete ?' } ) %>
                       <% end %>
                   </div>
                 </li>
