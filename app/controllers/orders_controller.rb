@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     cart_items = Cart.find_by(user_id: @current_user.id).cart_items
     order = Order.new(date: DateTime.now(),
                       user_id: @current_user.id,
-                      address: @current_user.addresses.find_by(use_address: true).address,
+                      address: (@current_user.role == "clerk") ? nil : @current_user.addresses.find_by(use_address: true).address,
                       phone_no: @current_user.phone_no)
     if (order.save)
       cart_items.each do |cart_item|
