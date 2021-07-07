@@ -20,4 +20,12 @@ Rails.application.routes.draw do
   put "/cancel_order/:id" => "orders#cancel_order", as: :cancel_order
   put "/update_pending_order" => "orders#update_pending_order", as: :mark_as_delivered
   get "/admin" => "admin#index", as: :admin_index
+  get "/reports" => "admin#reports", as: :reports
+  get "/users_profile" => "admin#users_profile", as: :users_profile
+  get "/update_special_users_view" => "admin#update_special_users_view", as: :update_special_users_view
+  patch "/edit_special_users" => "admin#edit_special_users", as: :edit_special_users
+  get "/invoices" => "admin#invoices", as: :invoices
+  get "/customers_profile_view" => "admin#customers_profile_view", as: :customers_profile_view
+  get "/customer_report" => "admin#customer_report", as: :customer_report
+  get "/access_control" => "access#access_control", as: :access_control
 end
