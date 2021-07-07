@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
         redirect_to users_menu_path(id: 0)
       end
     else
+      flash[:error] = "Your login attempt was invalid. Please retry."
       redirect_to root_path
     end
   end

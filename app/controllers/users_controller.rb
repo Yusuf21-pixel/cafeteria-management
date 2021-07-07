@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       Cart.create!(user_id: user.id)
       redirect_to users_menu_path(id: 0)
     else
+      flash[:error] = user.errors.full_messages.join(", ")
       redirect_to new_user_path
     end
   end

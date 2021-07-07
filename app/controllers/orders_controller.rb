@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
   def create
     cart_items = Cart.find_by(user_id: @current_user.id).cart_items
-    order = Order.new(date: DateTime.now(),
+    order = Order.new(date: DateTime.now().to_date,
+                      time: Time.now().strftime("%I:%M%p"),
                       user_id: @current_user.id,
-                      address: (@current_user.role == "clerk") ? nil : @current_user.addresses.find_by(use_address: true).address,
+                      address: (@current_user.role == "clerk") ? "walk-in-customer" : @current_user.addresses.find_by(use_address: true).address,
                       phone_no: @current_user.phone_no)
     if (order.save)
       cart_items.each do |cart_item|
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
   def update_pending_order
     order = Order.find(params[:id])
     if (order.archived_by.nil? && order.delivered_at.nil?)
-      order.delivered_at = DateTime.now
+      order.delivered_at = DateTime.now()
       order.save!
     end
     redirect_to customer_orders_path
