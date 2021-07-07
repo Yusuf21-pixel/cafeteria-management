@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody class = "table-body">
-          <% orders = (@current_user.role == "owner") ?  Order.all : @current_user.orders %>
+          <% orders = (@current_user.role == "owner" || @current_user.role == "clerk") ?  Order.all : @current_user.orders %>
           <% orders.order(:date).each do |ord| %>
           <tr>
             <th scope="row"> #<%= ord.id %> </th>

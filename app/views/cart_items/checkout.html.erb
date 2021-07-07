@@ -1,5 +1,5 @@
 <%= link_to "<< Previous", users_menu_path(id: 0), method: "get" ,class: "Previous" %>
-<ul class="Item-menuCategory-body-customer" style="margin-top:-30px;">
+<ul class="View-order-container" style="margin-top:-30px;">
    <% @items.each do |item| %>
       <li class="Checkout-card" style="width: 100%;">
           <h1 class="Cart-item-name"> <%= item.menu_item_name %> </h1>
@@ -13,49 +13,55 @@
       <h2 class="Total-amount-checkout">Total amount : </h2>
       <h3 class="Total-amount-checkout"> &#36; <%= 1234%>
    </div>
-   <div class="Address-checkout">
-    <%= link_to "Add new address",
-              "javascript:void(0)",
-              { :remote => true,
-              "data-toggle" => "modal",
-              "data-target" => "#exampleModal1",
-              class: "Add-new-address" } %>
-    <ul>
-        <% @addresses.each do |address| %>
-           <li class="Address-item">
-              <%= form_with(url: "/update_use_address", method: "put") do %>
-                <%= hidden_field_tag "id", address.id %>
-                  <div class="Address-left">
-                      <%= radio_button_tag "address",
-                                            nil,
-                                            checked = address.use_address,
-                                            class: "",
-                                            onclick: "this.form.submit()" %>
-                      <h5 class="Address-text"> <%= address.address %> </h5>
-                  </div>
-              <% end %>
-              <div class="Address-right">
-                  <%= form_with(url: "/update_address_view/#{address.id}", method: "get") do %>
-                    <%= image_submit_tag("pencil.png",
-                                          class: "MenuCategory-updateIcon",
-                                          alt: "Pencil Icon",
-                                          title: "Edit Address" ) %>
-                  <% end %>
-                  <%= form_with(url: "/addresses/#{address.id}", method: "delete") do %>
-                    <%= image_submit_tag("trash-can.png",
-                                          class: "MenuCategory-deleteIcon",
-                                          alt: "Trash Can",
-                                          title: "Delete Address") %>
-                  <% end %>
-              </div>
-           </li>
-        <% end %>
-    </ul>
-  </div>
-  <% if @current_user.addresses.empty? %>
-     <a href="javascript:void(0)" class="Confirm-order Disable-confirm-order" disabled title="Add address to confirm order"> Confirm order </a>
+   <% if @current_user.role == "customer" %>
+    <div class="Address-checkout">
+      <%= link_to "Add new address",
+                "javascript:void(0)",
+                { :remote => true,
+                "data-toggle" => "modal",
+                "data-target" => "#exampleModal1",
+                class: "Add-new-address" } %>
+      <ul>
+          <% @addresses.each do |address| %>
+            <li class="Address-item">
+                <%= form_with(url: "/update_use_address", method: "put") do %>
+                  <%= hidden_field_tag "id", address.id %>
+                    <div class="Address-left">
+                        <%= radio_button_tag "address",
+                                              nil,
+                                              checked = address.use_address,
+                                              class: "",
+                                              onclick: "this.form.submit()" %>
+                        <h5 class="Address-text"> <%= address.address %> </h5>
+                    </div>
+                <% end %>
+                <div class="Address-right">
+                    <%= form_with(url: "/update_address_view/#{address.id}", method: "get") do %>
+                      <%= image_submit_tag("pencil.png",
+                                            class: "MenuCategory-updateIcon",
+                                            alt: "Pencil Icon",
+                                            title: "Edit Address" ) %>
+                    <% end %>
+                    <%= form_with(url: "/addresses/#{address.id}", method: "delete") do %>
+                      <%= image_submit_tag("trash-can.png",
+                                            class: "MenuCategory-deleteIcon",
+                                            alt: "Trash Can",
+                                            title: "Delete Address") %>
+                    <% end %>
+                </div>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @current_user.role == "clerk" %>
+    <%= link_to "Confirm-order", orders_path, method: "post",class: "Confirm-order"%>
   <% else %>
-     <%= link_to "Confirm-order", orders_path, method: "post",class: "Confirm-order"%>
+    <% if @current_user.addresses.empty? %>
+      <a href="javascript:void(0)" class="Confirm-order Disable-confirm-order" disabled title="Add address to confirm order"> Confirm order </a>
+    <% else %>
+      <%= link_to "Confirm-order", orders_path, method: "post",class: "Confirm-order"%>
+    <% end %>
   <% end %>
 </ul>
 
