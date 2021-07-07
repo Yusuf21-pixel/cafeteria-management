@@ -11,6 +11,10 @@ class UsersController < ApplicationController
                     password: params[:password],
                     role: params[:role])
     if user.save
+      if (@current_user && @current_user.role == "owner")
+        Cart.create!(user_id: user.id) if params[:role] == "clerk"
+        redirect_to admin_index_path and return
+      end
       session[:current_user_id] = user.id
       Cart.create!(user_id: user.id)
       redirect_to users_menu_path(id: 0)
