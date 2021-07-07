@@ -56,6 +56,7 @@
   border: none;
   padding: 4px 6px;
   border-radius: 4px;
+  text-align: center;
 }
 
 .View-order-details-btn {
@@ -160,7 +161,7 @@
   background-color: #12344d;
   color: #fff;
   border: none;
-  padding: 6px 16px;
+  padding: 8px 20px;
   border-radius: 4px;
 }
 
@@ -172,4 +173,8 @@
 
 .Disable-confirm-order {
   opacity: 0.6;
+}
+
+.Disable-confirm-order:hover {
+  cursor: context-menu;
 }
