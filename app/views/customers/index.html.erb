@@ -1,12 +1,3 @@
-<script>
- function changeQty() {
-    var initPrice=0;
-    document.querySelectorAll(".Cart-item-price").forEach(function(i,k){
-       initPrice = initPrice + parseInt(i.innerText.replace("$",""));
-    })
-    document.getElementById("Tot-cart-amount").innerHtml = "$ " initPrice;
-  }
-</script>
 <% if @menu_category.empty? %>
     <div class="Display-message">
         <%= image_tag "empty-page.png", alt: "No Items Found" %>
@@ -62,7 +53,7 @@
           <% else %>
             <div class="Cart-head">
               <h1 class="Cart-heading-text"> Cart </h1>
-              <%= link_to "Clear cart", destroy_all_items_path, method: "delete", class: "Clear-cart" %>
+              <%= link_to "Clear cart", destroy_all_items_path, method: "delete", class: "Clear-cart", data: { confirm: 'Are you sure want to clear cart ?' }  %>
             </div>
             <ul class="Cart-body">
               <% @cart_items.each do |cart_item| %>
@@ -70,22 +61,25 @@
                     <div class="Cart-up-down">
                       <h1 class="Cart-item-name"> <%= cart_item.menu_item_name %> </h1>
                       <%= form_with(url: "/cart_items/#{cart_item.id}", method: "delete") do %>
-                      <%= image_submit_tag("trash-can.png",
-                                           class: "MenuCategory-deleteIcon",
-                                           alt: "Trash Can") %>
-                    <% end %>
+                         <%= image_submit_tag("trash-can.png",
+                                              class: "MenuCategory-deleteIcon",
+                                              alt: "Trash Can") %>
+                     <% end %>
                     </div>
                     <div class="Cart-up-down">
                       <h3 class="Cart-item-price"> &#36; <%= (cart_item.quantity * cart_item.menu_item_price).round(2) %> </h3>
                       <div class="Quantity">
-                          <%= link_to "-", reduct_quantity_path(id: cart_item.id), class: "Quantity-change", method: "put", onclick: "changeQty()" %>
+                          <%= link_to "-", reduct_quantity_path(id: cart_item.id), class: "Quantity-change", method: "put" %>
                           <h3 class="Quantity-text"> <%= cart_item.quantity %> </h3>
-                          <%= link_to "+", add_quantity_path(id: cart_item.id), class: "Quantity-change", method: "put", onclick: "changeQty()" %>
+                          <%= link_to "+", add_quantity_path(id: cart_item.id), class: "Quantity-change", method: "put" %>
                       </div>
                     </div>
                 </li>
               <% end %>
-              <h2 class="Tot-cart-amount"></h2>
+              <div class="Total-amount">
+                <h2 class="Total-amount-checkout">BILL TOTAL : </h2>
+                <h3 class="Total-amount-checkout"> &#36; <%= Cart.tot_amount(@cart.id) %>
+              </div>
             </ul>
             <div class="Cart-footer">
               <%= link_to "Checkout", checkout_path, method: "get", class: "Order-btn" %>

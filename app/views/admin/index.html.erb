@@ -1,1 +1,23 @@
-<h1>Hello</h1>
+<div class = "Home-page-container">
+  <div class = "Home-item-block">
+    <div class = "Home-item-left">
+        <%= image_tag("reports-bar.png",class:"icon") %>
+        <p>Reports</p>
+    </div>
+    <%= link_to "View Reports",reports_path,class:"Home-item-right" %>
+  </div>
+  <div class = "Home-item-block">
+     <div class = "Home-item-left">
+        <%= image_tag("add-user.png",class:"icon") %>
+        <p> Create Owner / Billing Clerk</p>
+     </div>
+     <%= link_to "Create",new_user_path,class:"Home-item-right"%>
+  </div>
+  <div class = "Home-item-block">
+     <div class = "Home-item-left">
+        <%= image_tag("update-profile.png",class:"icon") %>
+        <p>Update User Profile</p>
+     </div>
+     <%= link_to "Update",users_profile_path,class:"Home-item-right"%>
+  </div>
+</div>

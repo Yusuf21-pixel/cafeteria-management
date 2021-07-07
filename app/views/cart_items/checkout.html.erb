@@ -1,5 +1,10 @@
 <%= link_to "<< Previous", users_menu_path(id: 0), method: "get" ,class: "Previous" %>
 <ul class="View-order-container" style="margin-top:-30px;">
+    <% if flash[:error] %>
+      <p class = "Flash-error Flash-error-duplicate">
+          <%= flash[:error] %>
+      </p>
+    <% end %>
    <% @items.each do |item| %>
       <li class="Checkout-card" style="width: 100%;">
           <h1 class="Cart-item-name"> <%= item.menu_item_name %> </h1>
@@ -11,7 +16,7 @@
    <% end %>
    <div class="Total-amount">
       <h2 class="Total-amount-checkout">Total amount : </h2>
-      <h3 class="Total-amount-checkout"> &#36; <%= 1234%>
+      <h3 class="Total-amount-checkout"> &#36; <%= Cart.tot_amount(@cart.id) %> </h3>
    </div>
    <% if @current_user.role == "customer" %>
     <div class="Address-checkout">
