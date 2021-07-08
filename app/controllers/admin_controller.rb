@@ -24,15 +24,22 @@ class AdminController < ApplicationController
   end
 
   def invoices
-    @orders = Order.all
+    @orders = Order.all.order(id: :desc)
     unless params[:first_date].nil?
-      @orders = Order.date_range(params[:first_date].to_date, params[:last_date].to_date)
+      @orders = Order.date_range(params[:first_date].to_date, params[:last_date].to_date).order(id: :desc)
     end
   end
 
   def customers_profile_view
+    @users = User.all.where("role = ?", "customer")
   end
 
   def customer_report
+    @id = params[:id]
+    user = User.find(@id)
+    @orders = user.orders.order(id: :desc)
+    unless params[:first_date].nil?
+      @orders = @orders.date_range(params[:first_date].to_date, params[:last_date].to_date).order(id: :desc)
+    end
   end
 end

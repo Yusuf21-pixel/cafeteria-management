@@ -1,0 +1,25 @@
+<%= link_to "<< Previous", reports_path, method: "get" ,class: "Previous" %>
+<div class="table-responsive" style="margin-top:30px;">
+    <table class="table table-hover table-bordered">
+      <thead class = "table-head">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Email</th>
+          <th scope="col">Update</th>
+        </tr>
+      </thead>
+      <tbody class = "table-body">
+        <% @users.each do |user| %>
+          <tr>
+            <th scope="row"> #<%= user.id %> </th>
+            <th scope="row"> <%= user.name %> </th>
+             <th scope="row"> <%= user.phone_no %> </th>
+            <th scope="row"> <%= user.email %> </th>
+            <th scope="row"> <%= link_to "See Report",customer_report_path(id: user.id),class: "Mark-as-delivered-btn" %> </th>
+           </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
