@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
       if (user.role == "owner")
-        redirect_to menu_categories_path
+        redirect_to admin_index_path
       else
         redirect_to users_menu_path(id: 0)
       end

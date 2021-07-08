@@ -1,0 +1,58 @@
+<%= link_to "<< Previous", (only_customer) ? customers_profile_view_path : reports_path, method: "get" ,class: "Previous" %>
+<div class="Invoice-container">
+    <div class="View-order-container" >
+      <%= form_with(url: path, method: "get", class: "Date") do %>
+        <% if only_customer %>
+          <%= hidden_field_tag "id", @id%>
+        <% end %>
+        <div class="Date-body">
+            <div class="Date-container">
+              <h3 class="Date-text">From</h3>
+              <%= date_field_tag 'first_date', nil, class: "Query-date", required: true, autofocus: true %>
+            </div>
+            <div class="Date-container">
+              <h3 class="Date-text">To</h3>
+              <%= date_field_tag 'last_date', nil,class: "Query-date", required: true %>
+            </div>
+        </div>
+        <%= submit_tag "See report", class: "Mark-as-delivered-btn Date-submit-btn" %>
+      <% end %>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead class = "table-head">
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delivered At</th>
+              <th scope="col"> Details </th>
+            </tr>
+          </thead>
+          <tbody class = "table-body">
+            <% orders.each do |ord| %>
+              <tr>
+                <th scope="row"> #<%= ord.id %> </th>
+                <td> <%= ord.date %> </td>
+                <td> <%= ord.time %> </td>
+                <% if ord.archived_by == "customer" %>
+                    <td> <p class="Cancelled-order-text"> Cancelled </p> </td>
+                    <td> - </td>
+                <% elsif ord.archived_by == "owner" || ord.archived_by == "clerk" %>
+                    <td> <p class="Cancelled-order-text"> Cancelled by shop </p> </td>
+                    <td> -</td>
+                <% elsif ord.delivered_at.nil? %>
+                      <td> <p class="Pending-order-text"> Pending </p> </td>
+                      <td> - </td>
+                <% else %>
+                    <td> <p class="Delivered-order"> Delivered </p> </td>
+                    <td> <%= ord.delivered_at.strftime("%Y-%m-%d  [%I:%M%p]")  %> </td>
+                <% end %>
+                <td> <%= link_to "View details", orders_path(id: ord.id), class: "View-order-details-btn" %> </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
