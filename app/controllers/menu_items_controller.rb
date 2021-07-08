@@ -1,4 +1,6 @@
 class MenuItemsController < ApplicationController
+  before_action :ensure_owner
+
   def create
     item = MenuItem.new(name: params[:name].capitalize(),
                         price: params[:price],

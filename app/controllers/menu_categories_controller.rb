@@ -1,4 +1,6 @@
 class MenuCategoriesController < ApplicationController
+  before_action :ensure_owner
+
   def index
     @categories = MenuCategory.all.order(:name)
   end

@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :ensure_customer
+
   def create
     new_address = params[:address].gsub(/[^0-9A-Za-z]/, "").downcase
     addresses = @current_user.addresses

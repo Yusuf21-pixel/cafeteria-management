@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :ensure_not_owner, only: [:create]
+  before_action :ensure_not_user, only: [:update_pending_order]
+
   def create
     cart_items = Cart.find_by(user_id: @current_user.id).cart_items
     order = Order.new(date: DateTime.now().to_date,

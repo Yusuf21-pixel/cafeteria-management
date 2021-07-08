@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  before_action :ensure_not_owner
+
   def index
     @menu_category = MenuCategory.all
     @id = params[:id]

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  skip_before_action :verify_authenticity_token
   before_action :current_user
+  before_action :ensure_user_logged_in
 
   def ensure_user_logged_in
     unless current_user
@@ -10,19 +10,31 @@ class ApplicationController < ActionController::Base
 
   def ensure_owner
     unless current_user.role == "owner"
-      redirect_to access_control_path
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
     end
   end
 
   def ensure_clerk
     unless current_user.role == "clerk"
-      redirect_to access_control_path
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
+
+  def ensure_not_owner
+    if current_user.role == "owner"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
     end
   end
 
   def ensure_customer
     unless current_user.role == "customer"
-      redirect_to access_control_path
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
+
+  def ensure_not_user
+    if current_user.role == "customer"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
     end
   end
 

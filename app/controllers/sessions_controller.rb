@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :ensure_user_logged_in, except: [:destroy]
+
   def new
   end
 
