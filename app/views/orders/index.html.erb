@@ -1,5 +1,7 @@
-<% if(not params[:owner]) %>
+<% if(params[:path] == "invoices") %>
     <%= link_to "<< Previous", invoices_path ,class: "Previous" %>
+<% elsif(params[:path] == "customer_report") %>
+    <%= link_to "<< Previous", customer_report_path(id: params[:which_user_id]) ,class: "Previous" %>
 <% else %>
    <%= link_to "<< Previous", customer_orders_path ,class: "Previous" %>
 <% end %>
@@ -31,7 +33,7 @@
     <% end %>
   </div>
 
-   <div class="table-responsive">
+  <div class="table-responsive">
     <table class="table table-hover table-bordered">
       <thead class = "table-head Invoice-head">
         <tr>
@@ -50,7 +52,7 @@
         <% end %>
       </tbody>
     </table>
-</div>
+  </div>
 <div class="Total-amount">
     <h2 class="Total-amount-checkout">BILL TOTAL : </h2>
     <h3 class="Total-amount-checkout"> &#36; <%= Order.tot_amount(@order_detail.id) %>

@@ -22,7 +22,7 @@
             <% if user.role == "customer" %>
                <th scope="row"> - </th>
             <% else %>
-               <th scope="row"> <%= link_to "Update Profile",update_special_users_view_path(id: user.id),class: "Mark-as-delivered-btn" %> </th>
+               <th scope="row"> <%= link_to "Update Profile",update_special_users_view_path(id: user.id), class: "Mark-as-delivered-btn" %> </th>
             <% end %>
           </tr>
         <% end %>

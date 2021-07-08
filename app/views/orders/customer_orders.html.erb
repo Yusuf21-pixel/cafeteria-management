@@ -17,8 +17,8 @@
           </tr>
         </thead>
         <tbody class = "table-body">
-          <% orders = (@current_user.role == "owner" || @current_user.role == "clerk") ?  Order.all : @current_user.orders %>
-          <% orders.order(id: :desc).each do |ord| %>
+          <% orders = (@current_user.role == "owner" || @current_user.role == "clerk") ?  Order.all.order("delivered_at DESC NULLS FIRST","archived_by DESC NULLS FIRST") : @current_user.orders.order("delivered_at DESC NULLS FIRST","archived_by DESC NULLS FIRST") %>
+          <% orders.each do |ord| %>
           <tr>
             <th scope="row"> <%= ord.id %> </th>
             <td> <%= ord.date %> </td>
@@ -40,7 +40,7 @@
                <td> <p class="Delivered-order"> Delivered </p> </td>
                <td> <%= ord.delivered_at.strftime("%Y-%m-%d  [%l:%M %p]")  %> </td>
             <% end %>
-            <td> <%= link_to "View details", orders_path(id: ord.id, owner: "yes"), class: "View-order-details-btn" %> </td>
+            <td> <%= link_to "View details", orders_path(id: ord.id, path: "customer_orders"), class: "View-order-details-btn" %> </td>
           </tr>
           <% end %>
         </tbody>

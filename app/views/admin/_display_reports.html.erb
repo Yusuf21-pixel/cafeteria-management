@@ -49,7 +49,7 @@
                     <td> <p class="Delivered-order"> Delivered </p> </td>
                     <td> <%= ord.delivered_at.strftime("%Y-%m-%d  [%I:%M%p]")  %> </td>
                 <% end %>
-                <td> <%= link_to "View details", orders_path(id: ord.id), class: "View-order-details-btn" %> </td>
+                <td> <%= link_to "View details", orders_path(id: ord.id, path: path, which_user_id: @id), class: "View-order-details-btn" %> </td>
               </tr>
             <% end %>
           </tbody>
