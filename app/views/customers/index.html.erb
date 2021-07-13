@@ -17,7 +17,7 @@
                 </li>
             <% end %>
         </ul>
-        <% if @menu_items.empty? %>
+        <% if @menu_items.nil? %>
             <div class="User-menu">
               <%= image_tag "empty-page.png", alt: "No Items Found" %>
               <h1 class="Message-text">No Items found</h1>

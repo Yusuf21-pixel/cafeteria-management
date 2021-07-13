@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
     @menu_category = MenuCategory.all
     @id = params[:id]
     if @id == "0"
-      @category = MenuCategory.first
+      @category = MenuCategory.find_by(status: "Active")
       redirect_to users_menu_path(id: @category.id) unless @category.nil?
     else
       @category = MenuCategory.find(@id)
