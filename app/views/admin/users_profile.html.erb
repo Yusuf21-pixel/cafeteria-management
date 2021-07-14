@@ -9,6 +9,7 @@
           <th scope="col">Email</th>
           <th scope="col">Role</th>
           <th scope="col">Update</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody class = "table-body">
@@ -21,8 +22,21 @@
             <th scope="row"> <%= user.role %> </th>
             <% if user.role == "customer" %>
                <th scope="row"> - </th>
+               <th scope="row"> - </th>
             <% else %>
-               <th scope="row"> <%= link_to "Update Profile",update_special_users_view_path(id: user.id), class: "Mark-as-delivered-btn" %> </th>
+               <% if user.email != "admin123@gmail.com" %>
+                  <th scope="row"> <%= link_to "Update Profile",update_special_users_view_path(id: user.id), class: "Mark-as-delivered-btn" %> </th>
+                  <th scope="row"> <%= form_with(url: "/users/#{user.id}", method: "delete") do %>
+                                        <%= image_submit_tag("trash-can.png",
+                                                              class: "MenuCategory-deleteIcon",
+                                                              alt: "Trash Can",
+                                                              data: { confirm: 'Are you sure want to delete ?' } ) %>
+                                    <% end %>
+                  </th>
+               <% else %>
+                 <th scope="row"> - </th>
+                 <th scope="row"> - </th>
+               <% end %>
             <% end %>
           </tr>
         <% end %>

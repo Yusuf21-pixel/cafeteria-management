@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :ensure_owner
+
   def index
   end
 
@@ -7,7 +8,7 @@ class AdminController < ApplicationController
   end
 
   def users_profile
-    @users = User.all.order(:id)
+    @users = User.all.where("archived_by IS NULL")
   end
 
   def update_special_users_view
