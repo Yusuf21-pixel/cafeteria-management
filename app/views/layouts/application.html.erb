@@ -43,6 +43,11 @@
                     <%= link_to "Orders", customer_orders_path , class:"nav-link", style:"color:white", "aria-current":"page"%>
                   </li>
               <% end %>
+              <% if @current_user.role == "customer" || @current_user.role == "owner" %>
+                  <li class="nav-item">
+                    <%= link_to "Update profile", update_profile_view_path , class:"nav-link", style:"color:white", "aria-current":"page"%>
+                  </li>
+              <% end %>
               <div class = "User-profile">
                 <h1 class="User-profile-greeting">Welcome <%= @current_user.name %> </h1>
                 <li class="nav-item">

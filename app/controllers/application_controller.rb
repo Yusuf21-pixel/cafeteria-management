@@ -38,6 +38,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_not_clerk
+    if current_user.role == "clerk"
+      render :file => "#{Rails.root}/public/404.html", layout: false, status: :not_found
+    end
+  end
+
   def current_user
     return @current_user if @current_user
 

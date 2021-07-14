@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   get "/customers_profile_view" => "admin#customers_profile_view", as: :customers_profile_view
   get "/customer_report" => "admin#customer_report", as: :customer_report
   get "/access_control" => "access#access_control", as: :access_control
+  get "/update_profile_view" => "users#update_profile_view", as: :update_profile_view
+  patch "/update_user" => "users#update_user", as: :update_user
 end

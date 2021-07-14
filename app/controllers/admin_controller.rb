@@ -21,8 +21,12 @@ class AdminController < ApplicationController
     user.name = params[:name]
     user.phone_no = params[:phone_no]
     user.email = params[:email]
-    user.save!
-    redirect_to users_profile_path
+    unless user.save
+      flash[:error] = user.errors.full_messages.join(", ")
+      redirect_to update_special_users_view_path(id: params[:id])
+    else
+      redirect_to users_profile_path
+    end
   end
 
   def invoices

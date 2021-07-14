@@ -2,10 +2,13 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in, except: [:destroy]
   before_action :ensure_owner, only: [:destroy]
+  before_action :ensure_not_clerk, only: [:update_profile_view, :update_user]
 
   def new
-    if current_user && current_user.role == "customer" || current_user.role == "clerk"
-      redirect_to users_menu_path(id: 0)
+    if current_user
+      if current_user.role == "customer" || current_user.role == "clerk"
+        redirect_to users_menu_path(id: 0)
+      end
     end
   end
 
@@ -27,6 +30,26 @@ class UsersController < ApplicationController
     else
       flash[:error] = user.errors.full_messages.join(", ")
       redirect_to new_user_path
+    end
+  end
+
+  def update_profile_view
+  end
+
+  def update_user
+    user = @current_user
+    user.name = params[:name]
+    user.phone_no = params[:phone_no]
+    user.email = params[:email]
+    unless user.save
+      flash[:error] = user.errors.full_messages.join(", ")
+      redirect_to update_profile_view_path
+    else
+      if @current_user.role == "owner"
+        redirect_to admin_index_path
+      else
+        redirect_to users_menu_path(id: 0)
+      end
     end
   end
 

@@ -1,4 +1,8 @@
-<%= link_to "<< Previous", users_profile_path, method: "get" ,class: "Previous" %>
+<% if @current_user.role == "customer" %>
+   <%= link_to "<< Previous", users_menu_path(id: 0), method: "get" ,class: "Previous" %>
+<% else %>
+   <%= link_to "<< Previous", admin_index_path, method: "get" ,class: "Previous" %>
+<% end %>
 <% if flash[:error] %>
   <p class = "Flash-error">
       <%= flash[:error] %>
@@ -6,10 +10,10 @@
 <% end %>
 <section class = "SignIn-container Owner-previous">
   <div class = "SignIn-container-content">
-      <%= form_with(url: edit_special_users_path, method: "patch") do |form| %>
+      <%= form_with(url: update_user_path, method: "patch") do |form| %>
           <div class = "Form-section">
               <%= form.text_field :name,
-                                  value: @user.name,
+                                  value: @current_user.name,
                                   class:"Form-input",
                                   placeholder:"Name",
                                   autofocus: true,
@@ -19,7 +23,7 @@
           </div>
           <div class = "Form-section">
               <%= form.text_field :phone_no,
-                                  value: @user.phone_no,
+                                  value: @current_user.phone_no,
                                   class:"Form-input",
                                   placeholder:"Phone number",
                                   pattern: "[0-9]{10}",
@@ -28,12 +32,11 @@
           </div>
           <div class = "Form-section">
               <%= form.email_field :email,
-                                   value: @user.email,
+                                   value: @current_user.email,
                                    class:"Form-input",
                                    placeholder: "Email address",
                                    required: true %>
           </div>
-          <%= hidden_field_tag "id", @id %>
           <div class = "Form-section">
               <%= form.submit "Update", class:"Form-submit"  %>
           </div>
